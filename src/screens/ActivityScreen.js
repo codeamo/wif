@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-const AmountToSendScreen = () => {
+const ActivityScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Amount Screen</Text>
+      <Text>Transaction Screen</Text>
     </View>
   );
 };
 
 const Styles = StyleSheet.create({});
 
-export default AmountToSendScreen;
+export default ActivityScreen;
