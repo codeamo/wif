@@ -7,35 +7,41 @@ import { Feather } from '@expo/vector-icons';
 import SendScreen from './src/screens/SendScreen';
 import AmountToSendScreen from './src/screens/AmountToSendScreen';
 import ActivityScreen from './src/screens/ActivityScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import SigninScreen from './src/screens/SigninScreen';
+import SignupScreen from './src/screens/SignupScreen';
+import SettingScreen from './src/screens/SettingScreen';
 
-const TapNavigator = createBottomTabNavigator(
-  {
-    Send: SendScreen,
-    Amount: AmountToSendScreen,
-    Activity: ActivityScreen
-  },
-  {
-    initialRouteName: 'Send',
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        const { routeName } = navigation.state;
-        const IconComponent = Feather;
-        let IconName;
-        if (routeName === 'Send') {
-          IconName = 'send';
-        } else if (routeName === 'Amount') {
-          IconName = 'dollar-sign';
-        } else if (routeName === 'Activity') {
-          IconName = 'activity';
-        }
-        return <IconComponent name={IconName} size={25} color={tintColor} />;
-      },
-      tabBarOptions: {
-        activeTintColor: 'green',
-        inactiveTintColor: 'black'
-      }
-    })
+const sendFlow = createStackNavigator({
+  Send: SendScreen,
+  Amount: AmountToSendScreen,
+  Setting: SettingScreen
+});
+
+sendFlow.navigationOptions = {
+  title: 'Send',
+  tabBarIcon: <Feather name="send" size={25} />,
+  tabBarOptions: {
+    activeTintColor: 'green',
+    inactiveTintColor: 'black'
   }
-);
+};
 
-export default createAppContainer(TapNavigator);
+const switchNavigator = createSwitchNavigator({
+  LoginFlow: createStackNavigator({
+    Signup: SignupScreen,
+    Signin: SigninScreen
+  }),
+  MainAppFlow: createBottomTabNavigator(
+    {
+      Home: HomeScreen,
+      sendFlow,
+      Activity: ActivityScreen
+    },
+    {
+      initialRouteName: 'sendFlow'
+    }
+  )
+});
+
+export default createAppContainer(switchNavigator);

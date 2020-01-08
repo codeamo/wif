@@ -1,26 +1,31 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Header } from 'react-native-elements';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import UserProfile from '../components/UserProfile';
 import RecentUsers from '../components/RecentUsers';
 import Contacts from '../components/Contacts';
 
-const SendScreen = () => {
+const SendScreen = ({ navigation }) => {
   return (
     <View>
-      <Header
-        containerStyle={{
-          backgroundColor: '#fff'
-        }}
-        rightComponent={<UserProfile />}
-      />
       <RecentUsers />
-      <Contacts />
+      <TouchableOpacity onPress={() => navigation.navigate('Amount')}>
+        <Contacts />
+      </TouchableOpacity>
     </View>
   );
 };
 
-SendScreen.navigationOptions = {};
+SendScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerRight: () => {
+      return (
+        <TouchableOpacity onPress={() => navigation.navigate('Setting')}>
+          <UserProfile />
+        </TouchableOpacity>
+      );
+    }
+  };
+};
 
 const Styles = StyleSheet.create({});
 
