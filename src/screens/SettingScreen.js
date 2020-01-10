@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements';
+import signOut from '../actions/userActions';
 
 const SettingScreen = () => {
   return (
     <View>
-      <Button title="Sign Out" />
+      <Button onPress={signOut} title="Sign Out" />
     </View>
   );
 };

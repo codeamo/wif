@@ -14,21 +14,22 @@ const AuthForm = () => {
         label="email"
         autoCapitalize="none"
         autoCorrect={false}
-        /* value={email} */
+        value={email}
         onChangeText={text => setEmail({ email: text })}
       />
       <Input
+        secureTextEntry
         style={Styles.spacer}
         label="password"
         autoCapitalize="none"
         autoCorrect={false}
-        /* value={password} */
+        value={password}
         onChangeText={pin => setPassword({ password: pin })}
       />
       <Button
         style={Styles.spacer}
         title="Signup"
-        onPress={() => onsubmit({ ...email, ...password })}
+        onPress={() => onSubmit({ ...email, ...password })}
       />
     </View>
   );
