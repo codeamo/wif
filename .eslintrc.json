@@ -27,7 +27,8 @@
       {
         "printWidth": 85,
         "tabWidth": 2,
-        "singleQuote": true
+        "singleQuote": true,
+        "backtick": true
       }
     ],
     "no-console": "error",
